@@ -1,6 +1,9 @@
 # SIR
 Simulation of Kermack-McKendrick's SIR (Susceptible, Infected, Recovered) model. More information [here](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology).
 
+[![](./img/sir.png)](https://pabrod.shinyapps.io/SIRmodel/)
+
+
 ## How to run
 - Run in `ShinyApps`: just click [here](https://pabrod.shinyapps.io/SIRmodel/)
 - Run locally in `RStudio` (requires `Shiny`): `runGitHub( "SIR", "PabRod")`
