@@ -59,10 +59,10 @@ server <- function(input, output) {
         sol <- SIR(ts, y0, parms = c(r = input$r, a = input$a))
         
         # Plot the results
-        ggplot(sol, aes(x=ts)) +
-            geom_line(aes(y = S), color = "blue") + 
-            geom_line(aes(y = I), color="red") +
-            geom_line(aes(y = R), color = "green")
+        sol <- melt(sol, id = c("time"))
+        ggplot(sol) + geom_line(aes(x=time, y=value, colour=variable), size = 2) +
+            scale_colour_manual(values=c("blue", "red", "green")) + 
+            theme_bw()
     })
 }
 

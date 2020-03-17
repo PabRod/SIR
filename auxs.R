@@ -1,6 +1,7 @@
 library(deSolve)
 library(dplyr)
 library(ggplot2)
+library(reshape2)
 
 dSIR <- function(time, y, parms = SIR_default_parms()) {
   
