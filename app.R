@@ -13,28 +13,31 @@ library(shiny)
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Kermack-McKendrick (SIR) epidemiological model"),
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
+            withMathJax(),
+            p("This applet simulates the Kermack-McKendrick epidemic model. It contains three states: S (the susceptible population), 
+              I (the infected population) and R (the recovered population)"),
+            p("The differential equation is given below."),
+            p("$$\\begin{align}
+                 \\ \\frac{dS}{dt} &= -rSI \\\\
+                 \\ \\frac{dI}{dt} &= +rSI - aI \\\\
+                 \\ \\frac{dR}{dt} &= aI
+                 \\end{align}$$"),
             sliderInput("a",
-                        "Constant a:",
+                        "Recovery rate (a):",
                         min = 0,
                         max = 1,
                         value = 0.25),
             sliderInput("r",
-                        "Constant r:",
+                        "Infection rate (r):",
                         min = 0,
-                        max = 4,
+                        max = 1.5,
                         value = 1.0,
-                        step = 0.1),
-            sliderInput("S0",
-                        "Initial S:",
-                        min = 0,
-                        max = 1,
-                        value = 0.99,
-                        step = 0.01)
+                        step = 0.1)
         ),
 
         # Show a plot of the generated distribution
@@ -52,7 +55,7 @@ server <- function(input, output) {
     output$sirPlot <- renderPlot({
         # Solve the problem numerically
         ts <- seq(0, 100, by = 0.1)
-        y0 <- c(S = input$S0, I = 1 - input$S0)
+        y0 <- c(S = 0.99, I = 0.01)
         sol <- SIR(ts, y0, parms = c(r = input$r, a = input$a))
         
         # Plot the results
