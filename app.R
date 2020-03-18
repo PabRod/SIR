@@ -40,6 +40,7 @@ ui <- fluidPage(
                         value = 1.0,
                         step = 0.1),
             p("This simulation was initialized with $$(S_0, I_0, R_0) = (0.99, 0.01, 0.00)$$"),
+            p("More information at the ", a(href="https://blog.esciencecenter.nl/a-mathematician-in-quarantine-4555cfbf9f60", "Netherlands eScience Center blog")),
             p("By", a(href="https://pabrod.github.io", "Pablo Rodríguez-Sánchez")),
             p(a(href="https://github.com/PabRod/SIR/", "Source"))
         ),
